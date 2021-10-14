@@ -1,0 +1,1918 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     74001,       1910]
+NotebookOptionsPosition[     58586,       1593]
+NotebookOutlinePosition[     66187,       1789]
+CellTagsIndexPosition[     66144,       1786]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Report Project 1 ", "Title",
+ CellChangeTimes->{{3.8407961947278547`*^9, 
+  3.840796194855823*^9}},ExpressionUUID->"2e086750-1cf1-4c43-bc57-\
+bac07652a650"],
+
+Cell["\<\
+Course code: IX1500
+Date: 2021-09-16\
+\>", "Text",
+ CellChangeTimes->{{3.840795497286908*^9, 3.8407955133191247`*^9}, {
+  3.840796187407387*^9, 
+  3.8407961875353785`*^9}},ExpressionUUID->"679e81cd-23f2-4ac3-aad0-\
+55498a6469d8"],
+
+Cell["\<\
+Malcolm Liljedahl, malcolml@kth.se
+Harry Lazaridis, harrylaz@kth.se\
+\>", "Text",
+ CellChangeTimes->{{3.840795517103111*^9, 3.840795537879074*^9}, {
+  3.8407976460194387`*^9, 
+  3.8407976475246873`*^9}},ExpressionUUID->"39bfcd1a-7896-4364-9d2c-\
+9b6c98366775"],
+
+Cell[CellGroupData[{
+
+Cell["Task 1: Combinatorics in Texas hold\[CloseCurlyQuote]em", "Subchapter",
+ CellChangeTimes->{{3.840795662232933*^9, 
+  3.8407956727675114`*^9}},ExpressionUUID->"2760ab7a-2fed-4ae4-a63f-\
+890119ad5062"],
+
+Cell[CellGroupData[{
+
+Cell["Summery", "Section",ExpressionUUID->"28ab532a-4f99-4328-b494-a8a51a0e3e70"],
+
+Cell[CellGroupData[{
+
+Cell["Task", "Subsection",ExpressionUUID->"4df8543c-22f8-401d-8973-c66d5fa62864"],
+
+Cell["\<\
+In the Texas hold \[OpenCurlyQuote]em poker game every player gets just two \
+cards (hole cards), while the best hand is determined by the combination of \
+any five cards chosen from your two face down \[OpenCurlyDoubleQuote]hole\
+\[CloseCurlyDoubleQuote] cards and the five face up \
+\[OpenCurlyDoubleQuote]community\[CloseCurlyDoubleQuote] cards (shared by all \
+players). 
+The problem consist of determining the exact probability of the hands below \
+(best hand possible), using the census method (2.4 above), when a player has \
+two specific \[OpenCurlyDoubleQuote]hole\[CloseCurlyDoubleQuote] cards and \
+the community cards are unknown. This is the situation in the first pre-flop \
+(before dealing the community cards) betting round in Texas hold \
+\[OpenCurlyQuote]em. Chose the specific cards at random
+
+The deck is a normal 52 card deck without any jokers.
+
+\[FilledSmallCircle] one pair
+\[FilledSmallCircle] two pairs
+\[FilledSmallCircle] three of a kind
+\[FilledSmallCircle] straight
+\[FilledSmallCircle] flush
+\[FilledSmallCircle] full house
+\[FilledSmallCircle] four of a kind
+\[FilledSmallCircle] straight flush
+\[FilledSmallCircle] royal straight flush\
+\>", "Text",
+ CellChangeTimes->{{3.840795698088793*^9, 3.840795767790717*^9}, {
+  3.84079586035131*^9, 3.84079588667159*^9}, {3.8407959537754683`*^9, 
+  3.8407960234949465`*^9}, {3.840796311264632*^9, 
+  3.840796321367633*^9}},ExpressionUUID->"8ad5d4da-afa2-434b-a402-\
+a9f9b705fa59"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Result", "Subsection",
+ CellChangeTimes->{{3.8408099562787776`*^9, 3.8408099602949286`*^9}, 
+   3.840810000894497*^9, 3.840878373898381*^9, {3.8408787535469894`*^9, 
+   3.84087875675363*^9}},ExpressionUUID->"39a0ef6c-6a2c-4081-9062-\
+84513a76c571"],
+
+Cell["\<\
+This is the result from the first run of the program. Each run varies in \
+result but the difference in probability on the hands stays kind of similar.
+
+\[FilledCircle]Royal Straight Flush:
+\t\[FilledSmallCircle] Probability: 0.002%
+\t
+\[FilledCircle]Straight Flush:
+\t\[FilledSmallCircle] Probability: 0.198%
+
+\[FilledCircle]Straight:
+\t\[FilledSmallCircle] Probability: 5.815%
+
+\[FilledCircle]Full House:
+\t\[FilledSmallCircle] Probability: 2.246%
+\t\[LineSeparator]\[FilledCircle]Four of a kind:
+\t\[FilledSmallCircle] Probability: 0.129%
+\t
+\[FilledCircle]Flush:
+\t\[FilledSmallCircle] Probability: 1.288%
+\t
+\[FilledCircle]Three of a kind:
+\t\[FilledSmallCircle] Probability: 4.485%
+\t
+\[FilledCircle]Two pairs:
+\t\[FilledSmallCircle] Probability: 28.089%
+\t
+\[FilledCircle]One pair:
+\t\[FilledSmallCircle] Probability: 45.507%\
+\>", "Text",
+ CellChangeTimes->{{3.8407962723464394`*^9, 3.840796296768034*^9}, {
+  3.8407977054604845`*^9, 3.8407977181194887`*^9}, {3.8408097881688786`*^9, 
+  3.8408098847600036`*^9}, {3.8408099283683457`*^9, 3.840809994104253*^9}, {
+  3.840878762084141*^9, 3.8408788232434435`*^9}, {3.8412017606732025`*^9, 
+  3.8412017945991316`*^9}},ExpressionUUID->"1bf59983-7c21-4d19-805a-\
+0068e3a1cdc7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Subsection",
+ CellChangeTimes->{{3.840796394255369*^9, 
+  3.840796398120203*^9}},ExpressionUUID->"3f6a0ed3-0a32-411c-aeed-\
+e2d259d3e10c"],
+
+Cell[TextData[{
+ "In this task we calculated the probability of all \
+\[OpenCurlyDoubleQuote]point giving\[CloseCurlyDoubleQuote] hands in Texas \
+hold\[CloseCurlyQuote]em. Firstly 2 cards were picked at random and the we \
+combined those 2 cards will all the combinations possible for the 5 community \
+cards. \n\t\n\[FilledCircle]One pair:\n\t-Our calculations is showing that \
+getting a pair has the probability of around 46%.\n\n\[FilledCircle]Two pair:\
+\n\t-The probability of getting two pairs is around 28%. So it\
+\[CloseCurlyQuote]s approximately a 18% lesser chance then one pair.\n\n\
+\[FilledCircle]Three of a kind:\n\t- The probability of getting three of a \
+kind is around 5%, which is a 23% lower chance than getting two pairs.\n\n\
+\[FilledCircle]Flush:\n\t- The probability of getting a flush is around 1.3%, \
+which is about a 4% lower than getting three of a kind\n\n\[FilledCircle]Four \
+of a kind:\n\t- The probability of getting four of a kind is around 0.12%, \
+which is about a 1% lower chance than getting a flush.\n\n\[FilledCircle]Full \
+House:\n\t- The probability of getting a full house is around 2%, which is \
+about a 2% higher chance than getting a four of a kind.\n\n\
+\[FilledCircle]Straight:\n\t- The probability of getting a straight is around \
+3%, which is about a 1% higher chance than getting a full house.\n\n\
+\[FilledCircle]Straight Flush:\n\t- The probability of getting a straight \
+flush is around 0.2%, which is about a 3% lower chance than getting a \
+straight.\n\n\[FilledCircle]Royal Straight Flush:\n\t- The probability of \
+getting a royal straight flush is around 0.002%, which is about a 100% lower \
+chance than getting a straight flush.\n\nAfter a few test runs we can \
+conclude that the probability result of each hand varies and this depends on \
+for instance what hand you get at the start. The comparisons between the \
+hands roughly stays the same in all tests.\n\nWe can see that the probability \
+first decreases in the following order:\n",
+ StyleBox["One pair > Two pair > Three of a kind > Flush > Four of a kind ",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ "\n\nBut then it increases for a bit again in the following order:\n",
+ StyleBox["Four of a kind < Straight < Full House ",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ "\n\nThen it decreases drastic again when it comes to Straight Flush and \
+Royal Straight Flush.\n",
+ StyleBox["Straight > Straight Flush > Royal Straight Flush",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ "\n\nThis is the summary if we go from the highest probability to the \
+lowest:\n\n",
+ StyleBox["One pair > Two pair >  Three of a kind >  Full House > Straight > \
+Flush > Straight Flush > Four of a kind > Royal Straight Flush",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ "\n\nIt\[CloseCurlyQuote]s hard to give a fair model here, because our two \
+first hand cards are being picked at random, so in some cases they might be \
+the same number, of the same suit, in succession etc.\n\nAfter the discussion \
+with the other groups we came up with the conclusion that our method seems to \
+be correct and work as intended. Though it\[CloseCurlyQuote]s far from the \
+best solution for this problem. Our program runs very slow due to all the \
+MatchQ functions, so the time complexity is very badly optimized. Compared to \
+for instance if you use the inclusion/exclusion method instead then the \
+program would run much faster."
+}], "Text",
+ CellChangeTimes->{{3.840800016057817*^9, 3.840800136931594*^9}, {
+   3.8408002421397505`*^9, 3.8408002477316713`*^9}, {3.840878426290882*^9, 
+   3.8408785700516453`*^9}, {3.84087863132398*^9, 3.840878656108102*^9}, {
+   3.8408787024193144`*^9, 3.8408787390757256`*^9}, 3.8408792093252525`*^9, {
+   3.841201648888777*^9, 3.8412017200962224`*^9}, {3.841201831407322*^9, 
+   3.841201832624533*^9}, {3.841820593673336*^9, 3.8418206988083487`*^9}, {
+   3.843199768912835*^9, 
+   3.843199815680334*^9}},ExpressionUUID->"72b7efec-8aea-483e-becd-\
+60ff43eed710"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Code", "Section",ExpressionUUID->"eb232638-2837-4382-9654-616c94d28459"],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<`*\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"724ad548-2c8d-4dfd-82a4-53b64348dd55"],
+
+Cell["\<\
+Creates all possible cards, where the first integer in the number represents \
+the suit of the card and the remaining integer represents the value of the \
+card.\
+\>", "Text",
+ CellChangeTimes->{{3.840797783159421*^9, 3.84079781961712*^9}, {
+  3.840797858645858*^9, 3.840797898219903*^9}, {3.840797930544795*^9, 
+  3.8407979822266006`*^9}},ExpressionUUID->"542bc3e1-c2e8-4212-80b9-\
+ab9886cfc8cf"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"deckheart", " ", "=", " ", 
+   RowBox[{"Range", "[", 
+    RowBox[{"102", ",", " ", "114"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"deckclub", " ", "=", " ", 
+   RowBox[{"Range", "[", 
+    RowBox[{"202", ",", " ", "214"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"deckspaced", " ", "=", " ", 
+   RowBox[{"Range", "[", 
+    RowBox[{"302", ",", " ", "314"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"deckdiamond", " ", "=", " ", 
+   RowBox[{"Range", "[", 
+    RowBox[{"402", ",", " ", "414"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{3.8407977803500376`*^9},
+ CellLabel->"In[2]:=",ExpressionUUID->"5073e918-8d27-4be3-b31f-be5d9529127c"],
+
+Cell["\<\
+Joins all the  different deck into one deck. Randomly choosing two cards for \
+a player naming them cards. Deletes the cards that was randomly chosen for \
+the hand.\
+\>", "Text",
+ CellChangeTimes->{{3.840797993606983*^9, 
+  3.8407980697832384`*^9}},ExpressionUUID->"bc3e4acd-b094-470e-87e1-\
+156948975eb6"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"deck", " ", "=", " ", 
+   RowBox[{"Join", "[", 
+    RowBox[{
+    "deckheart", ",", " ", "deckclub", ",", " ", "deckspaced", ",", " ", 
+     "deckdiamond"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"cards", " ", "=", " ", 
+   RowBox[{"RandomChoice", "[", 
+    RowBox[{"deck", ",", " ", "2"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"deck", " ", "=", " ", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{"deck", ",", " ", 
+     RowBox[{"Alternatives", "@@", "cards"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8407980142518234`*^9, 3.8407980238183684`*^9}, 
+   3.8407980783643217`*^9},
+ CellLabel->"In[6]:=",ExpressionUUID->"409f8261-3a10-4a95-838d-b66b3b4afb9f"],
+
+Cell["\<\
+Creates a community with all the different types of combinations in a list of \
+five with the reaming cards in the deck. 
+Creates a new community called communityWithHand that represents the same \
+community as the first community but now also includes the hand that was \
+randomly chosen.
+Creates another community as the previous but also sorted by its card value. \
+\>", "Text",
+ CellChangeTimes->{{3.8407980832210927`*^9, 
+  3.840798216667759*^9}},ExpressionUUID->"f959f73f-944d-41c0-8d44-\
+9d1c668aa3b5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"community", " ", "=", " ", 
+   RowBox[{"Sort", "[", 
+    RowBox[{"Subsets", "[", 
+     RowBox[{"deck", ",", " ", 
+      RowBox[{"{", "5", "}"}]}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"amountOfCommunity", " ", "=", " ", 
+   RowBox[{"Length", "[", "community", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"communityWithHand", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Flatten", "[", 
+      RowBox[{"Append", "[", 
+       RowBox[{"#", ",", "cards"}], "]"}], "]"}], "&"}], "/@", 
+    "community"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"communityWithHandSorted", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"SortBy", "[", 
+     RowBox[{
+      RowBox[{"Mod", "[", 
+       RowBox[{"#", ",", " ", "100"}], "]"}], "&"}], "]"}], " ", "/@", 
+    "communityWithHand"}]}], ";"}]}], "Input",
+ CellChangeTimes->{3.84079808029051*^9},
+ CellLabel->"In[9]:=",ExpressionUUID->"abb2b376-8744-4945-ab81-580d458f6822"],
+
+Cell[CellGroupData[{
+
+Cell["One pair", "Subsubsubsection",
+ CellChangeTimes->{{3.8407982408178596`*^9, 
+  3.8407982429123473`*^9}},ExpressionUUID->"11a68a07-a8c8-4959-b4f8-\
+c6be91b8278b"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the one pair function. \
+\>", "Text",
+ CellChangeTimes->{{3.840798251663152*^9, 
+  3.8407984254912643`*^9}},ExpressionUUID->"c7c44b41-8514-4868-b121-\
+13a69687ca8e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"pairQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "True"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"One", " ", "pair"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "False"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pairQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8407983197192106`*^9, 3.840798338943533*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"c32dead0-ec7c-4f4f-9929-4f66efeff523"],
+
+Cell["\<\
+Creates a new community for the hand with one pair. Taking the remains of a \
+division with 100 on all the cards in the deck giving the value of the card.
+Calculates the possible of  getting a one pair by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{{3.840798458988076*^9, 
+  3.8407986599062696`*^9}},ExpressionUUID->"915ad9e5-16e9-4bf5-a8ab-\
+2a8a0e6804a0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForPair", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Mod", "[", 
+      RowBox[{"#", ",", " ", "100"}], "]"}], "&"}], "/@", 
+    "communityWithHandSorted"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForPair", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "pairQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForPair", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.840798473940055*^9, 3.8407984870656376`*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"2fc89e02-4b07-417c-9a2d-f2e67996f437"],
+
+Cell[BoxData[
+ TemplateBox[{"47.84685382015896`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.840877932975415*^9, 3.841200555095439*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"4ceda7fa-4eb7-4383-b5a0-311f20d3ff19"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Two pair", "Subsubsubsection",
+ CellChangeTimes->{{3.8407987626955566`*^9, 
+  3.8407987658446226`*^9}},ExpressionUUID->"4920e26d-3d6a-4b35-a238-\
+f26ca48ac21f"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the two pair function. \
+\>", "Text",
+ CellChangeTimes->{{3.840798768303611*^9, 3.8407987686761827`*^9}, {
+  3.8407988298967876`*^9, 
+  3.840798858918311*^9}},ExpressionUUID->"a731879c-c802-4211-a607-\
+ffae66e13077"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"twoPairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "True"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"twoPairQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "False"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"One", " ", "pair"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"twoPairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "False"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"twoPairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"twoPairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"twoPairQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"twoPairQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.840798837146103*^9, 3.8407988468110633`*^9}},
+ CellLabel->"In[22]:=",ExpressionUUID->"84b79c50-50cf-47eb-ba56-d7408e6ab594"],
+
+Cell["\<\
+Creates a new community for the hand with two pair. Taking the remains of a \
+division with 100 on all the cards in the deck giving the value of the card.
+Calculates the possible of  getting a one pair by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{
+  3.8407988733838367`*^9, {3.8407992490031495`*^9, 
+   3.840799250020446*^9}},ExpressionUUID->"2a7a1849-ca54-4925-b331-\
+73a1c31d4ddb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForTwoPair", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Mod", "[", 
+      RowBox[{"#", ",", " ", "100"}], "]"}], "&"}], "/@", 
+    "communityWithHandSorted"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForTwoPair", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "twoPairQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForTwoPair", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8407040032333384`*^9, 3.840704018237287*^9}},
+ CellLabel->"In[29]:=",ExpressionUUID->"048fb7f9-9894-4eed-9bb8-65501ebf13d6"],
+
+Cell[BoxData[
+ TemplateBox[{"24.175933092941154`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.8408779655894895`*^9, 3.841200587022459*^9},
+ CellLabel->"Out[30]=",ExpressionUUID->"8c64acc2-db56-44bb-a902-ede0f7ab977b"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Three of a kind", "Subsubsubsection",
+ CellChangeTimes->{{3.8407989185582285`*^9, 
+  3.840798921044384*^9}},ExpressionUUID->"ed5863ee-22d7-4f33-92f7-\
+dfdf50d8787b"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the three of a kind function. \
+\>", "Text",
+ CellChangeTimes->{{3.8407989342957277`*^9, 
+  3.8407989403031588`*^9}},ExpressionUUID->"c6a38c05-829f-4fec-84fc-\
+e99b53d5ad8d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"threeOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "True"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"threeOfAKindQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "False"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"One", " ", "pair"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"threeOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"threeOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"threeOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"threeOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"threeOfAKindQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8407041110658865`*^9, 3.8407041242012434`*^9}, {
+  3.8407143490124426`*^9, 3.840714352246781*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"989c406a-a661-48b8-87c9-aa9decb30209"],
+
+Cell["\<\
+Creates a new community for the hand with three of a kind. Taking the remains \
+of a division with 100 on all the cards in the deck giving the value of the \
+card.
+Calculates the possible of  getting a one pair by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{
+  3.8407989529373913`*^9, {3.8407992389424353`*^9, 
+   3.840799244038804*^9}},ExpressionUUID->"a5e98b6d-f9fe-44d5-9ca3-\
+9141e23ae373"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForThreeOfAKind", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Mod", "[", 
+      RowBox[{"#", ",", " ", "100"}], "]"}], "&"}], "/@", 
+    "communityWithHandSorted"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForThreeOfAKind", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "threeOfAKindQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForThreeOfAKind", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8407041679618893`*^9, 3.840704179343729*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"82dbc395-ad3b-4b9f-9c79-7a28bfffcf11"],
+
+Cell[BoxData[
+ TemplateBox[{"5.5815665766769245`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.8408779982208376`*^9, 3.8412006302340074`*^9},
+ CellLabel->"Out[39]=",ExpressionUUID->"a67baf58-f275-42ae-b5bd-86976cb72dc8"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Flush", "Subsubsubsection",
+ CellChangeTimes->{{3.8407989856590776`*^9, 
+  3.840798987319126*^9}},ExpressionUUID->"021f04e0-6381-47ab-bde3-\
+09397dada08e"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the flush function. \
+\>", "Text",
+ CellChangeTimes->{{3.8407990033950844`*^9, 
+  3.8407990105678387`*^9}},ExpressionUUID->"ee95801d-d1c5-4759-86e4-\
+dcbc8b3ff1a9"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", 
+      ",", " ", "x_", ",", " ", "___"}], "}"}], "]"}], " ", ":=", " ", 
+   "True"}], " ", 
+  RowBox[{"(*", "Flush", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlushQ", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "___", ",", " ", "a_", ",", " ", "b_", ",", " ", "c_", " ", ",", " ", 
+       "d_", ",", " ", "e_", ",", " ", "___"}], "}"}], " ", "/;", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"b", " ", "==", " ", 
+        RowBox[{"a", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"c", " ", "==", " ", 
+        RowBox[{"b", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"d", " ", "==", " ", 
+        RowBox[{"c", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"e", " ", "==", " ", 
+        RowBox[{"d", " ", "+", " ", "1"}]}]}], " ", ")"}]}], "]"}], " ", ":=",
+    "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Royal", " ", "straight", " ", "flush"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"FlushQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "False"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"One", " ", "pair"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "False"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlushQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.840714873775855*^9, 3.8407148793932285`*^9}, {
+  3.840714917447048*^9, 3.840714942822663*^9}, {3.840799037806139*^9, 
+  3.8407990506530285`*^9}},
+ CellLabel->"In[40]:=",ExpressionUUID->"da472a3e-7707-4528-949d-598997131ffb"],
+
+Cell["\<\
+Creates a new community for the hand with flush. Taking the rounded integer \
+of a division with 100 on all the cards in the deck giving the suit of the \
+card.
+Calculates the possible of  getting a one pair by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{{3.840799060843131*^9, 3.8407990976398153`*^9}, {
+  3.8407992153190565`*^9, 
+  3.8407992172158027`*^9}},ExpressionUUID->"d9e1c3df-18f1-4baa-a8ee-\
+ba2598cb174d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForFlush", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Round", "[", 
+      RowBox[{"Divide", "[", 
+       RowBox[{"#", ",", " ", "100"}], "]"}], "]"}], "&"}], "/@", 
+    "communityWithHandSorted"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForFlush", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "FlushQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForFlush", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8407149680753136`*^9, 3.8407149897549844`*^9}, {
+  3.8407150636784706`*^9, 3.840715086414591*^9}, {3.840715177080777*^9, 
+  3.8407151858826017`*^9}, {3.8407152995200443`*^9, 3.840715308095304*^9}, {
+  3.8407153552533717`*^9, 3.8407153859430714`*^9}, {3.840715499615949*^9, 
+  3.8407154997704706`*^9}},
+ CellLabel->"In[49]:=",ExpressionUUID->"067ef554-4d25-4e48-9321-1a08f5cd037a"],
+
+Cell[BoxData[
+ TemplateBox[{"0.12143895486039004`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.8408780498539815`*^9, 3.84120068352722*^9},
+ CellLabel->"Out[50]=",ExpressionUUID->"aad6e3f9-7832-4b69-9940-10924c0a36e1"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Four of a kind", "Subsubsubsection",
+ CellChangeTimes->{{3.840799129229974*^9, 
+  3.8407991309600906`*^9}},ExpressionUUID->"c32e5b6c-83c5-437e-87ae-\
+c0d182df0767"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the four of a kind function. \
+\>", "Text",
+ CellChangeTimes->{{3.8407991387810345`*^9, 
+  3.8407991434392557`*^9}},ExpressionUUID->"79c0632e-f13b-4b10-8d4d-\
+d2136db4468f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"fourOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "True"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fourOfAKindQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "False"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"One", " ", "pair"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fourOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fourOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "False"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fourOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fourOfAKindQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fourOfAKindQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.840704290076201*^9, 3.8407042992403383`*^9}, {
+   3.8407137314646025`*^9, 3.840713735496487*^9}, 3.8407138603276324`*^9},
+ CellLabel->"In[51]:=",ExpressionUUID->"d5e053cb-491f-48e1-a93d-b53ba7697066"],
+
+Cell["\<\
+Creates a new community for the hand with four of a kind. Taking the remains \
+of a division with 100 on all the cards in the deck giving the value of the \
+card.
+Calculates the possible of  getting a one pair by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{{3.840799178359619*^9, 
+  3.8407991913631563`*^9}},ExpressionUUID->"d2fc099c-39f0-4faf-927e-\
+e1b02bd21696"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForFourOfAKind", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Mod", "[", 
+      RowBox[{"#", ",", " ", "100"}], "]"}], "&"}], "/@", 
+    "communityWithHandSorted"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForFourOfAKind", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "fourOfAKindQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForFourOfAKind", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.840705120872265*^9, 3.8407051345809975`*^9}, {
+   3.8407132807332973`*^9, 3.8407133020493155`*^9}, {3.8407133510068693`*^9, 
+   3.8407133589481215`*^9}, 3.8407133993714385`*^9, {3.840713431095207*^9, 
+   3.840713446607797*^9}, {3.8407135270738993`*^9, 3.840713546849325*^9}, {
+   3.840713579426205*^9, 3.8407135916496553`*^9}, {3.8407136234110875`*^9, 
+   3.8407136239037895`*^9}, 3.8407141362065344`*^9},
+ CellLabel->"In[58]:=",ExpressionUUID->"50001435-c89c-4ce7-8435-9ef3df31beea"],
+
+Cell[BoxData[
+ TemplateBox[{"0.12592270950933565`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.840878081108923*^9, 3.8412007313030753`*^9},
+ CellLabel->"Out[59]=",ExpressionUUID->"579aeb0b-7df6-4f47-9e04-b39aa9416280"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Full House", "Subsubsubsection",
+ CellChangeTimes->{{3.840799292443185*^9, 
+  3.840799294380969*^9}},ExpressionUUID->"819b1585-bfc6-4ddf-a605-\
+8c05a870d19e"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the full house function. \
+\>", "Text",
+ CellChangeTimes->{{3.840799302021117*^9, 
+  3.8407993094727535`*^9}},ExpressionUUID->"c6ee00f6-b7cc-4f7f-9b6f-\
+e717ac3d453b"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"fullHouseQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "True"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fullHouseQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "True"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fullHouseQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fullHouseQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "False"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"One", " ", "pair"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fullHouseQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fullHouseQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "False"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fullHouseQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8407143163895206`*^9, 3.84071433514439*^9}},
+ CellLabel->"In[60]:=",ExpressionUUID->"3db2bdbd-ecd8-4686-8870-7d3a7ab9553b"],
+
+Cell["\<\
+Creates a new community for the hand with full house. Taking the remains of a \
+division with 100 on all the cards in the deck giving the value of the card.
+Calculates the possible of  getting a full house by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{{3.840799326570659*^9, 
+  3.840799358317179*^9}},ExpressionUUID->"82dc25e9-4518-4d68-98c6-\
+68aab5ece151"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForFullHouse", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Mod", "[", 
+      RowBox[{"#", ",", " ", "100"}], "]"}], "&"}], "/@", 
+    "communityWithHandSorted"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForFullHouse", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "fullHouseQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForFullHouse", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.840714369647416*^9, 3.840714382382124*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"7b2f150a-8ef3-43ea-bcfb-fef18c78041c"],
+
+Cell[BoxData[
+ TemplateBox[{"2.2462194868696788`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.840878116020901*^9, 3.841200773435295*^9},
+ CellLabel->"Out[68]=",ExpressionUUID->"313abc6b-d4bb-4789-bd8c-57bd138aacc3"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Straight", "Subsubsubsection",
+ CellChangeTimes->{{3.8407993766707788`*^9, 
+  3.8407993776689353`*^9}},ExpressionUUID->"00579116-6799-405d-89d7-\
+d5e3553b09b3"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the straight function. \
+\>", "Text",
+ CellChangeTimes->{{3.840799387791851*^9, 
+  3.840799397960231*^9}},ExpressionUUID->"b6bf1be2-5471-479d-9cc8-\
+a47c346b02b6"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"straightQ", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "___", ",", " ", "a_", ",", " ", "b_", ",", " ", "c_", " ", ",", " ", 
+       "d_", ",", " ", "e_", ",", " ", "___"}], "}"}], " ", "/;", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"b", " ", "==", " ", 
+        RowBox[{"a", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"c", " ", "==", " ", 
+        RowBox[{"b", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"d", " ", "==", " ", 
+        RowBox[{"c", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"e", " ", "==", " ", 
+        RowBox[{"d", " ", "+", " ", "1"}]}]}], " ", ")"}]}], "]"}], " ", ":=",
+    "True"}], " ", 
+  RowBox[{"(*", "Straight", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"straightQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"straightQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"straightQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"straightQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "False"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"One", " ", "pair"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"straightQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"straightQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "False"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"straightQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8407145138423758`*^9, 3.840714564286768*^9}, {
+  3.840714636557768*^9, 3.840714686494599*^9}, {3.8407147416402454`*^9, 
+  3.840714787330964*^9}, {3.840879094165066*^9, 3.8408791033391094`*^9}},
+ CellLabel->"In[69]:=",ExpressionUUID->"43c0e968-974d-4913-8ba9-79faef86cfc3"],
+
+Cell["\<\
+Creates a new community for the hand with straight\[CloseCurlyQuote]s. Taking \
+the remains of a division with 100 on all the cards in the deck giving the \
+value of the card.
+Calculates the possible of  getting a one pair by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{{3.840799425543116*^9, 
+  3.8407994441090994`*^9}},ExpressionUUID->"d735eeaf-8714-4dfe-aad0-\
+b984b7215ac6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForStraight", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Mod", "[", 
+      RowBox[{"#", ",", " ", "100"}], "]"}], "&"}], "/@", 
+    "communityWithHandSorted"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForStraight", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "straightQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForStraight", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8407147958199625`*^9, 3.8407148059443936`*^9}},
+ CellLabel->"In[77]:=",ExpressionUUID->"4ba1bd4e-7da0-49ee-b8db-708b10895931"],
+
+Cell[BoxData[
+ TemplateBox[{"3.00251090260341`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.8408781623269324`*^9, 3.8412008144808207`*^9},
+ CellLabel->"Out[78]=",ExpressionUUID->"c92f7457-3c11-406f-af18-ae394b6e0d92"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Straight Flush", "Subsubsubsection",
+ CellChangeTimes->{{3.8407995050052633`*^9, 
+  3.840799507761742*^9}},ExpressionUUID->"24fa4805-56de-4ebb-8921-\
+55f053129b76"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the straight flush function. \
+\>", "Text",
+ CellChangeTimes->{{3.8407995159626503`*^9, 
+  3.8407995232118225`*^9}},ExpressionUUID->"e7eff2d5-3a78-49e2-bf31-\
+c16fd4b57235"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"StraightFlushQ", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "___", ",", " ", "a_", ",", " ", "b_", ",", " ", "c_", " ", ",", " ", 
+       "d_", ",", " ", "e_", ",", " ", "___"}], "}"}], " ", "/;", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"b", " ", "==", " ", 
+        RowBox[{"a", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"c", " ", "==", " ", 
+        RowBox[{"b", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"d", " ", "==", " ", 
+        RowBox[{"c", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+       RowBox[{"e", " ", "==", " ", 
+        RowBox[{"d", " ", "+", " ", "1"}]}]}], " ", ")"}]}], "]"}], " ", ":=",
+    "True"}], " ", 
+  RowBox[{"(*", "Straight", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"StraightFlushQ", "[", 
+   RowBox[{"{", 
+    RowBox[{
+    "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", 
+     ",", " ", "x_", ",", " ", "___"}], "}"}], "]"}], " ", ":=", " ", 
+  "False"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"StraightFlushQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "False"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"One", " ", "pair"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "False"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"StraightFlushQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8407163555450306`*^9, 3.840716364703882*^9}, {
+  3.8407166625518694`*^9, 3.8407166695056715`*^9}, {3.8408791206518784`*^9, 
+  3.840879121067994*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"5660b0fc-c1f1-4bd4-9720-ac43553ee7b8"],
+
+Cell["\<\
+Creates a new community for the hand with straight\[CloseCurlyQuote]s flush. \
+Sorting all the cards by their whole value.
+Calculates the possible of  getting a one pair by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{{3.8407995522267075`*^9, 
+  3.8407995926923018`*^9}},ExpressionUUID->"c61d929f-fe71-402f-b03c-\
+c7836546f333"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForStraightFlush", " ", "=", " ", 
+   RowBox[{"Sort", "/@", "communityWithHand"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForStraightFlush", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "StraightFlushQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForStraightFlush", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8407163732290897`*^9, 3.8407164082849007`*^9}, {
+  3.8407166121129446`*^9, 3.840716674504569*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"46f7e698-d633-43b2-b57f-ecbb561a567e"],
+
+Cell[BoxData[
+ TemplateBox[{"0.020389284298363192`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.840878209757423*^9, 3.8412008672120914`*^9},
+ CellLabel->"Out[89]=",ExpressionUUID->"e55922d4-eb54-48d3-8528-39d51fe2da6d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Royal Straight Flush", "Subsubsubsection",
+ CellChangeTimes->{{3.840799620277448*^9, 
+  3.840799623481954*^9}},ExpressionUUID->"a7edbf85-9643-4fdb-b54d-\
+66170cb1af51"],
+
+Cell["\<\
+Creates different functions with different hands possible for the combination \
+of the hand and the community.
+Letting all combinations try to pattern match with the functions and \
+returning true if they match the royal straight flush function. \
+\>", "Text",
+ CellChangeTimes->{{3.8407996325313926`*^9, 
+  3.8407996536047354`*^9}},ExpressionUUID->"7616c3ea-f59a-4fd9-a506-\
+54e087bd6acf"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"RoyalStraightFlushQ", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "a_", ",", " ", "b_", ",", " ", "c_", " ", ",", " ", 
+      "d_", ",", " ", "e_", ",", " ", "___"}], "}"}], " ", "/;", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"a", " ", "==", " ", "110"}], "||", " ", 
+        RowBox[{"a", " ", "==", " ", "210"}], " ", "||", " ", 
+        RowBox[{"a", " ", "==", " ", "310"}], "||", " ", 
+        RowBox[{"a", " ", "==", "410"}]}], ")"}], "&&", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"b", " ", "==", " ", 
+         RowBox[{"a", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+        RowBox[{"c", " ", "==", " ", 
+         RowBox[{"b", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+        RowBox[{"d", " ", "==", " ", 
+         RowBox[{"c", " ", "+", " ", "1"}]}], " ", "&&", " ", 
+        RowBox[{"e", " ", "==", " ", 
+         RowBox[{"d", " ", "+", " ", "1"}]}]}], ")"}]}], " ", ")"}]}], "]"}], 
+  " ", ":=", "True"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"RoyalStraightFlushQ", "[", 
+   RowBox[{"{", 
+    RowBox[{
+    "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", 
+     ",", " ", "x_", ",", " ", "___"}], "}"}], "]"}], " ", ":=", " ", 
+  "False"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RoyalStraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=",
+    " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RoyalStraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", 
+      ",", " ", "y_", ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], " ", ":=", \
+" ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Full", " ", "house"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RoyalStraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", "x_", ",", " ", "x_", ",", 
+      " ", "___"}], "}"}], "]"}], " ", ":=", " ", "False"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Four", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"RoyalStraightFlushQ", "[", 
+     RowBox[{"{", 
+      RowBox[{"___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}], "}"}],
+      "]"}], ":=", "False"}], ";", " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"One", " ", "pair"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"RoyalStraightFlushQ", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "___", ",", " ", "y_", 
+       ",", " ", "y_", ",", " ", "___"}], "}"}], "]"}], ":=", "False"}]}], 
+  " ", 
+  RowBox[{"(*", 
+   RowBox[{"Two", " ", "pairs"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RoyalStraightFlushQ", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "___", ",", " ", "x_", ",", " ", "x_", ",", " ", "x_", ",", " ", "___"}],
+      "}"}], "]"}], " ", ":=", "False"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "of", " ", "a", " ", "kind"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RoyalStraightFlushQ", "[", 
+    RowBox[{"{", "___", "}"}], "]"}], ":=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.840716832837329*^9, 3.840716884257103*^9}, {
+  3.840793813144943*^9, 3.8407938169875193`*^9}, {3.840793852800001*^9, 
+  3.84079386015921*^9}, {3.8407938921600523`*^9, 3.84079389901388*^9}, {
+  3.840794101708869*^9, 3.8407941071310883`*^9}, {3.841202874026742*^9, 
+  3.8412028841203413`*^9}},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"569a23c7-29a6-4097-b497-118dc5e4ed21"],
+
+Cell["\<\
+Creates a new community for the hand with straight\[CloseCurlyQuote]s flush. \
+Sorting all the cards by their whole value.
+Calculates the possible of  getting a one pair by dividing the number of \
+communities that matched with the function above by the length of the whole \
+community.\
+\>", "Text",
+ CellChangeTimes->{
+  3.8407996724529963`*^9},ExpressionUUID->"9f3b2929-ca29-4297-9dc1-\
+3bca88c504be"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"communityForRoyalStraightFlush", " ", "=", " ", 
+   RowBox[{"Sort", "/@", "communityWithHand"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Interpreter", "[", "\"\<PercentFraction\>\"", "]"}], "[", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{"Count", "[", 
+     RowBox[{"communityForRoyalStraightFlush", ",", " ", 
+      RowBox[{"_", "?", 
+       RowBox[{"(", "RoyalStraightFlushQ", ")"}]}]}], "]"}], "/", 
+    RowBox[{"Length", "[", "communityForRoyalStraightFlush", "]"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.840716904946432*^9, 3.840716917510853*^9}, {
+  3.8407171605422106`*^9, 3.8407171627945557`*^9}},
+ CellLabel->
+  "In[109]:=",ExpressionUUID->"6e9c0d60-7cc9-4dfe-9acb-249e6cf93b9a"],
+
+Cell[BoxData[
+ TemplateBox[{"0.004578149483660254`","\"%\"","percent","\"Percent\""},
+  "QuantityPostfix"]], "Output",
+ CellChangeTimes->{3.8408782604392242`*^9, 3.84120092000729*^9, 
+  3.841202947886157*^9},
+ CellLabel->
+  "Out[110]=",ExpressionUUID->"66ae2648-19c5-4917-9d4c-a0d6b47d9f22"]
+}, Open  ]]
+}, Open  ]],
+
+Cell["", "Subsubsubsection",ExpressionUUID->"7f3114f2-7ad8-4a59-910c-80b6e672f4f9"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1920, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+PageHeaders->{{None, None, None}, {
+   Cell[
+    TextData[{"KTH/ICT - Kommunikationssystem"}], "PageHeader", FontFamily -> 
+    "Arial", FontSize -> 9], None, None}},
+PageFooters->{{None, None, None}, {None, 
+   Cell[
+    TextData[{
+      CounterBox["Page"]}], "PageNumber"], None}},
+PrintingOptions->{"FacingPages"->False},
+TrackCellChangeTimes->True,
+Magnification:>1.3 Inherited,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell["Modify the definitions below to change the default appearance of all \
+cells in a given style. \nMake modifications to any definition using commands \
+in the Format menu.", "Text"], 
+   Cell[
+    CellGroupData[{
+      Cell["Notebook Options Settings", "Section"], 
+      Cell[
+       StyleData["Notebook"], ShowCellBracket -> Automatic]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Title and Section Cells", "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell["Title", "Subsection"], 
+         Cell[
+          StyleData["Title"], FontFamily -> "Arial", FontSize -> 36, 
+          FontWeight -> "Bold", FontColor -> GrayLevel[0.5]], 
+         Cell[
+          StyleData["Subtitle"], FontFamily -> "Arial", FontWeight -> "Bold"], 
+         Cell[
+          StyleData["Subsubtitle"], FontFamily -> "Arial", FontSize -> 18]}, 
+        Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+         "Chapter", "Subsection", 
+          CellChangeTimes -> {{3.6182073006504073`*^9, 
+           3.6182073204926414`*^9}}], 
+         Cell[
+          StyleData["Chapter"], FontFamily -> "Arial", FontSize -> 34, 
+          FontWeight -> "Plain", FontSlant -> "Plain", 
+          FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}], 
+         Cell[
+          StyleData["Subchapter"], CellDingbat -> 
+          StyleBox["\[FilledSmallSquare]", Alignment -> Baseline, 
+            RGBColor[
+            0.09803921568627451, 0.32941176470588235`, 0.6509803921568628]], 
+          FontFamily -> "Arial", FontSize -> 28, FontWeight -> "Plain", 
+          FontSlant -> "Plain", 
+          FontVariations -> {
+           "StrikeThrough" -> False, "Underline" -> False}]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell["Section", "Subsection"], 
+         Cell[
+          StyleData["Section"], CellDingbat -> None, ShowGroupOpener -> True, 
+          FontFamily -> "Arial", FontSize -> 24, FontWeight -> "Bold", 
+          FontColor -> GrayLevel[0.5]], 
+         Cell[
+          StyleData["Subsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, CellMargins -> {{40., 3.}, {8., 12.}}, FontFamily -> "Arial", 
+          FontSize -> 18, FontWeight -> "Bold", FontColor -> GrayLevel[0.3]], 
+         Cell[
+          StyleData["Subsubsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, CellMargins -> {{53., Inherited}, {2, 10}}, FontFamily -> 
+          "Arial", FontSize -> 16, FontWeight -> "Bold", FontColor -> 
+          GrayLevel[0.]], 
+         Cell[
+          StyleData["Subsubsubsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, MenuSortingValue -> 1400, FontFamily -> "Arial Narrow", 
+          FontSize -> 14, FontWeight -> "Bold", FontSlant -> "Plain", 
+          FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+          FontColor -> GrayLevel[0]]}, Closed]]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Body Text", "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell["Standard", "Subsection"], 
+         Cell[
+          StyleData["Text"], FontFamily -> "Times"], 
+         Cell[
+          StyleData["SmallText"], MenuSortingValue -> 1425, FontFamily -> 
+          "Times"]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell["Display", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell["Lists", "Subsubsection"], 
+            Cell[
+             StyleData["Item"], CellDingbat -> 
+             StyleBox["\[FilledCircle]", Alignment -> Baseline, 
+               GrayLevel[0.3]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["ItemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["Subitem"], CellDingbat -> 
+             StyleBox["\[FilledSmallCircle]", Alignment -> Baseline, 
+               GrayLevel[0.3]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubitemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["Subsubitem"], CellDingbat -> 
+             StyleBox["\[FilledSmallCircle]", Alignment -> Baseline, 
+               GrayLevel[0.5]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubsubitemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["ItemNumbered"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubitemNumbered"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubsubitemNumbered"], FontFamily -> "Times"]}, 
+           Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell["Templates", "Subsubsection"], 
+            Cell[
+             StyleData[
+             "SideCaptionArray", StyleDefinitions -> StyleData["Text"]], 
+             GridBoxOptions -> {
+              GridBoxAlignment -> {"Columns" -> {Left}, "Rows" -> {Center}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}}], 
+            Cell[
+             StyleData[
+             "SideCaption", StyleDefinitions -> StyleData["SmallText"]]]}, 
+           Closed]]}, Closed]]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Input and Output Cells", "Section"], 
+      Cell[
+       StyleData["Input"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["InputOnly"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Code"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Output"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Message"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Print"], ShowCellBracket -> True]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Formulas and Programming", "Section"], 
+      Cell[
+       StyleData["InlineFormula"]], 
+      Cell[
+       StyleData["DisplayFormula"], FontFamily -> "Times"], 
+      Cell[
+       StyleData["DisplayFormulaNumbered"], FontFamily -> "Times"], 
+      Cell[
+       StyleData["Program"], ShowCellBracket -> True]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Citation Styles", "Section"], 
+      Cell[
+       StyleData["Reference"]]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+       TextData[{"Styles for ", 
+         StyleBox["Mathematica", FontSlant -> "Italic"], 
+         " System\[Hyphen]specific Elements"}], "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell["Default Box Styles", "Subsection"], 
+         Cell[
+          StyleData["Graphics"], FontFamily -> "Times"], 
+         Cell[
+          StyleData["Graphics3D"], FontFamily -> "Times"], 
+         Cell[
+          StyleData["NetworkGraphics"], FontFamily -> "Times"]}, Closed]]}, 
+     Closed]]}, Visible -> False, FrontEndVersion -> 
+  "12.0 for Microsoft Windows (64-bit) (April 8, 2019)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 162, 3, 107, "Title",ExpressionUUID->"2e086750-1cf1-4c43-bc57-bac07652a650"],
+Cell[745, 27, 239, 7, 67, "Text",ExpressionUUID->"679e81cd-23f2-4ac3-aad0-55498a6469d8"],
+Cell[987, 36, 270, 7, 67, "Text",ExpressionUUID->"39bfcd1a-7896-4364-9d2c-9b6c98366775"],
+Cell[CellGroupData[{
+Cell[1282, 47, 205, 3, 78, "Subchapter",ExpressionUUID->"2760ab7a-2fed-4ae4-a63f-890119ad5062"],
+Cell[CellGroupData[{
+Cell[1512, 54, 81, 0, 75, "Section",ExpressionUUID->"28ab532a-4f99-4328-b494-a8a51a0e3e70"],
+Cell[CellGroupData[{
+Cell[1618, 58, 81, 0, 53, "Subsection",ExpressionUUID->"4df8543c-22f8-401d-8973-c66d5fa62864"],
+Cell[1702, 60, 1464, 30, 430, "Text",ExpressionUUID->"8ad5d4da-afa2-434b-a402-a9f9b705fa59"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3203, 95, 254, 4, 53, "Subsection",ExpressionUUID->"39a0ef6c-6a2c-4081-9062-84513a76c571"],
+Cell[3460, 101, 1239, 35, 741, "Text",ExpressionUUID->"1bf59983-7c21-4d19-805a-0068e3a1cdc7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4736, 141, 158, 3, 53, "Subsection",ExpressionUUID->"3f6a0ed3-0a32-411c-aeed-e2d259d3e10c"],
+Cell[4897, 146, 4012, 64, 1289, "Text",ExpressionUUID->"72b7efec-8aea-483e-becd-60ff43eed710"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8958, 216, 78, 0, 75, "Section",ExpressionUUID->"eb232638-2837-4382-9654-616c94d28459"],
+Cell[9039, 218, 148, 2, 37, "Input",ExpressionUUID->"724ad548-2c8d-4dfd-82a4-53b64348dd55"],
+Cell[9190, 222, 407, 8, 41, "Text",ExpressionUUID->"542bc3e1-c2e8-4212-80b9-ab9886cfc8cf"],
+Cell[9600, 232, 737, 18, 113, "Input",ExpressionUUID->"5073e918-8d27-4be3-b31f-be5d9529127c"],
+Cell[10340, 252, 317, 7, 41, "Text",ExpressionUUID->"bc3e4acd-b094-470e-87e1-156948975eb6"],
+Cell[10660, 261, 745, 18, 88, "Input",ExpressionUUID->"409f8261-3a10-4a95-838d-b66b3b4afb9f"],
+Cell[11408, 281, 519, 10, 93, "Text",ExpressionUUID->"f959f73f-944d-41c0-8d44-9d1c668aa3b5"],
+Cell[11930, 293, 1005, 27, 113, "Input",ExpressionUUID->"abb2b376-8744-4945-ab81-580d458f6822"],
+Cell[CellGroupData[{
+Cell[12960, 324, 166, 3, 38, "Subsubsubsection",ExpressionUUID->"11a68a07-a8c8-4959-b4f8-c6be91b8278b"],
+Cell[13129, 329, 386, 8, 67, "Text",ExpressionUUID->"c7c44b41-8514-4868-b121-13a69687ca8e"],
+Cell[13518, 339, 2247, 64, 188, "Input",ExpressionUUID->"c32dead0-ec7c-4f4f-9929-4f66efeff523"],
+Cell[15768, 405, 470, 9, 67, "Text",ExpressionUUID->"915ad9e5-16e9-4bf5-a8ab-2a8a0e6804a0"],
+Cell[CellGroupData[{
+Cell[16263, 418, 739, 19, 63, "Input",ExpressionUUID->"2fc89e02-4b07-417c-9a2d-f2e67996f437"],
+Cell[17005, 439, 258, 4, 51, "Output",ExpressionUUID->"4ceda7fa-4eb7-4383-b5a0-311f20d3ff19"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17312, 449, 166, 3, 38, "Subsubsubsection",ExpressionUUID->"4920e26d-3d6a-4b35-a238-f26ca48ac21f"],
+Cell[17481, 454, 437, 9, 67, "Text",ExpressionUUID->"a731879c-c802-4211-a607-ffae66e13077"],
+Cell[17921, 465, 2268, 64, 188, "Input",ExpressionUUID->"84b79c50-50cf-47eb-ba56-d7408e6ab594"],
+Cell[20192, 531, 498, 10, 67, "Text",ExpressionUUID->"2a7a1849-ca54-4925-b331-73a1c31d4ddb"],
+Cell[CellGroupData[{
+Cell[20715, 545, 751, 19, 63, "Input",ExpressionUUID->"048fb7f9-9894-4eed-9bb8-65501ebf13d6"],
+Cell[21469, 566, 261, 4, 51, "Output",ExpressionUUID->"8c64acc2-db56-44bb-a902-ede0f7ab977b"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21779, 576, 171, 3, 38, "Subsubsubsection",ExpressionUUID->"ed5863ee-22d7-4f33-92f7-dfdf50d8787b"],
+Cell[21953, 581, 395, 8, 67, "Text",ExpressionUUID->"c6a38c05-829f-4fec-84fc-e99b53d5ad8d"],
+Cell[22351, 591, 2356, 65, 188, "Input",ExpressionUUID->"989c406a-a661-48b8-87c9-aa9decb30209"],
+Cell[24710, 658, 507, 11, 67, "Text",ExpressionUUID->"a5e98b6d-f9fe-44d5-9ca3-9141e23ae373"],
+Cell[CellGroupData[{
+Cell[25242, 673, 771, 19, 63, "Input",ExpressionUUID->"82dbc395-ad3b-4b9f-9c79-7a28bfffcf11"],
+Cell[26016, 694, 263, 4, 51, "Output",ExpressionUUID->"a67baf58-f275-42ae-b5bd-86976cb72dc8"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26328, 704, 161, 3, 38, "Subsubsubsection",ExpressionUUID->"021f04e0-6381-47ab-bde3-09397dada08e"],
+Cell[26492, 709, 385, 8, 67, "Text",ExpressionUUID->"ee95801d-d1c5-4759-86e4-dcbc8b3ff1a9"],
+Cell[26880, 719, 3482, 97, 238, "Input",ExpressionUUID->"da472a3e-7707-4528-949d-598997131ffb"],
+Cell[30365, 818, 529, 11, 67, "Text",ExpressionUUID->"d9e1c3df-18f1-4baa-a8ee-ba2598cb174d"],
+Cell[CellGroupData[{
+Cell[30919, 833, 1039, 24, 63, "Input",ExpressionUUID->"067ef554-4d25-4e48-9321-1a08f5cd037a"],
+Cell[31961, 859, 261, 4, 51, "Output",ExpressionUUID->"aad6e3f9-7832-4b69-9940-10924c0a36e1"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32271, 869, 170, 3, 38, "Subsubsubsection",ExpressionUUID->"c32e5b6c-83c5-437e-87ae-c0d182df0767"],
+Cell[32444, 874, 394, 8, 67, "Text",ExpressionUUID->"79c0632e-f13b-4b10-8d4d-d2136db4468f"],
+Cell[32841, 884, 2372, 65, 188, "Input",ExpressionUUID->"d5e053cb-491f-48e1-a93d-b53ba7697066"],
+Cell[35216, 951, 478, 10, 67, "Text",ExpressionUUID->"d2fc099c-39f0-4faf-927e-e1b02bd21696"],
+Cell[CellGroupData[{
+Cell[35719, 965, 1127, 24, 63, "Input",ExpressionUUID->"50001435-c89c-4ce7-8435-9ef3df31beea"],
+Cell[36849, 991, 262, 4, 51, "Output",ExpressionUUID->"579aeb0b-7df6-4f47-9e04-b39aa9416280"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37160, 1001, 164, 3, 38, "Subsubsubsection",ExpressionUUID->"819b1585-bfc6-4ddf-a605-8c05a870d19e"],
+Cell[37327, 1006, 388, 8, 67, "Text",ExpressionUUID->"c6ee00f6-b7cc-4f7f-9b6f-e717ac3d453b"],
+Cell[37718, 1016, 2280, 64, 188, "Input",ExpressionUUID->"3db2bdbd-ecd8-4686-8870-7d3a7ab9553b"],
+Cell[40001, 1082, 472, 9, 67, "Text",ExpressionUUID->"82dc25e9-4518-4d68-98c6-68aab5ece151"],
+Cell[CellGroupData[{
+Cell[40498, 1095, 757, 19, 63, "Input",ExpressionUUID->"7b2f150a-8ef3-43ea-bcfb-fef18c78041c"],
+Cell[41258, 1116, 259, 4, 51, "Output",ExpressionUUID->"313abc6b-d4bb-4789-bd8c-57bd138aacc3"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41566, 1126, 166, 3, 38, "Subsubsubsection",ExpressionUUID->"00579116-6799-405d-89d7-d5e3553b09b3"],
+Cell[41735, 1131, 384, 8, 67, "Text",ExpressionUUID->"b6bf1be2-5471-479d-9cc8-a47c346b02b6"],
+Cell[42122, 1141, 3200, 86, 213, "Input",ExpressionUUID->"43c0e968-974d-4913-8ba9-79faef86cfc3"],
+Cell[45325, 1229, 491, 10, 67, "Text",ExpressionUUID->"d735eeaf-8714-4dfe-aad0-b984b7215ac6"],
+Cell[CellGroupData[{
+Cell[45841, 1243, 757, 19, 63, "Input",ExpressionUUID->"4ba1bd4e-7da0-49ee-b8db-708b10895931"],
+Cell[46601, 1264, 261, 4, 51, "Output",ExpressionUUID->"c92f7457-3c11-406f-af18-ae394b6e0d92"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46911, 1274, 170, 3, 38, "Subsubsubsection",ExpressionUUID->"24fa4805-56de-4ebb-8921-55f053129b76"],
+Cell[47084, 1279, 394, 8, 67, "Text",ExpressionUUID->"e7eff2d5-3a78-49e2-bf31-c16fd4b57235"],
+Cell[47481, 1289, 3454, 93, 238, "Input",ExpressionUUID->"5660b0fc-c1f1-4bd4-9720-ac43553ee7b8"],
+Cell[50938, 1384, 440, 9, 67, "Text",ExpressionUUID->"c61d929f-fe71-402f-b03c-c7836546f333"],
+Cell[CellGroupData[{
+Cell[51403, 1397, 736, 17, 63, "Input",ExpressionUUID->"46f7e698-d633-43b2-b57f-ecbb561a567e"],
+Cell[52142, 1416, 263, 4, 51, "Output",ExpressionUUID->"e55922d4-eb54-48d3-8528-39d51fe2da6d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52454, 1426, 174, 3, 38, "Subsubsubsection",ExpressionUUID->"a7edbf85-9643-4fdb-b54d-66170cb1af51"],
+Cell[52631, 1431, 400, 8, 67, "Text",ExpressionUUID->"7616c3ea-f59a-4fd9-a506-54e087bd6acf"],
+Cell[53034, 1441, 3908, 102, 238, "Input",ExpressionUUID->"569a23c7-29a6-4097-b497-118dc5e4ed21"],
+Cell[56945, 1545, 414, 9, 67, "Text",ExpressionUUID->"9f3b2929-ca29-4297-9dc1-3bca88c504be"],
+Cell[CellGroupData[{
+Cell[57384, 1558, 758, 18, 63, "Input",ExpressionUUID->"6e9c0d60-7cc9-4dfe-9acb-249e6cf93b9a"],
+Cell[58145, 1578, 291, 6, 84, "Output",ExpressionUUID->"66ae2648-19c5-4917-9d4c-a0d6b47d9f22"]
+}, Open  ]]
+}, Open  ]],
+Cell[58463, 1588, 83, 0, 38, "Subsubsubsection",ExpressionUUID->"7f3114f2-7ad8-4a59-910c-80b6e672f4f9"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
